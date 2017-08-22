@@ -35,12 +35,15 @@ var articles={
 
 function createTemplate(data){
     
+    var title=data.title;
+    var heading=data.heading;
+    var content=data.content;
+    var date=data.date;
     var htmlTemplate=`
-    
     <html>
         <head>
             <title>
-                ${data.title}
+                ${title}
             </title>
         </head>
         <body>
@@ -51,13 +54,13 @@ function createTemplate(data){
             </div>
             <hr/>
             <h3>
-                ${data.heading}
+                ${heading}
             </h3>
             <div>
-                ${data.date}
+                ${date}
             </div>
             <div>
-                ${data.content}
+                ${content}
             </div>
         </body>
     </html>
