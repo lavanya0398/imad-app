@@ -3,13 +3,14 @@ var morgan = require('morgan');
 var path = require('path');
 
 var Pool=require('pg').Pool;
+
 var config={
-    user:
-    password:
-    host:
-    port:
-    database:
-}
+    user:'lavanyajayachith',
+    password:process.env.DB_PASSWORD,
+    host:'localhost',
+    port:'5432',
+    database:'lavanyajayachith'
+};
 var app = express();
 app.use(morgan('combined'));
 
@@ -78,15 +79,26 @@ function createTemplate(data){
     `;
     return(htmlTemplate);
 }
-
-
+var pool= new Pool(config);
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/:articleName',function(req,res){
+app.get('/test-id',function(req,res){
     
+    pool.query('select * from users',function(err,result){
+        if(err){
+            res.status('500').send(err.toString());
+        }
+        else{
+            res.send(JSON.stringyfy(result));
+        }
+    });
+    
+});
+
+app.get('/:articleName',function(req,res){
     var articleName=req.params.articleName;
     res.send(createTemplate(articles[articleName]));
 });
