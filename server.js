@@ -93,7 +93,7 @@ app.get('/test1',function(req,res){
             res.status('500').send(err.toString());
         }
         else{
-            res.send(JSON.stringyfy(result));
+            res.send(JSON.stringify(result));
         }
     });
     
