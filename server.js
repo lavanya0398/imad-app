@@ -85,7 +85,7 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/test-id',function(req,res){
+app.get('/test-db',function(req,res){
     
     pool.query('select * from users',function(err,result){
         if(err){
